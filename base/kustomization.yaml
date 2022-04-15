@@ -12,6 +12,7 @@ helmCharts:
 resources:
 - admin-creds.yaml
 namePrefix: dhpup-
+namespace: dhpup
 
 generators:
 - configmap-dashboards.yaml

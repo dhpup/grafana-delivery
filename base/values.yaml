@@ -1,11 +1,11 @@
 grafana.ini:
   server:
-    root_url: https://grafana-test.demo.akuity.io
+    root_url: https://grafana-dhpup.demo.akuity.io
 ingress:
   enabled: true
   ingressClassName: traefik
   hosts:
-  - grafana-test.demo.akuity.io
+  - grafana-dhpup.demo.akuity.io
 service:
   enabled: true
   type: ClusterIP

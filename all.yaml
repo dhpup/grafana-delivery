@@ -12,7 +12,7 @@ metadata:
     app.kubernetes.io/name: grafana
     app.kubernetes.io/version: 8.4.6
     helm.sh/chart: grafana-6.26.1
-  name: dhpup-demo-grafana
+  name: demo-grafana
   namespace: prod-grafana
 ---
 apiVersion: v1
@@ -24,7 +24,7 @@ metadata:
     app.kubernetes.io/name: grafana
     app.kubernetes.io/version: 8.4.6
     helm.sh/chart: grafana-6.26.1
-  name: dhpup-demo-grafana-test
+  name: demo-grafana-test
   namespace: prod-grafana
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -36,7 +36,7 @@ metadata:
     app.kubernetes.io/name: grafana
     app.kubernetes.io/version: 8.4.6
     helm.sh/chart: grafana-6.26.1
-  name: dhpup-demo-grafana
+  name: demo-grafana
   namespace: prod-grafana
 rules: []
 ---
@@ -49,16 +49,16 @@ metadata:
     app.kubernetes.io/name: grafana
     app.kubernetes.io/version: 8.4.6
     helm.sh/chart: grafana-6.26.1
-  name: dhpup-demo-grafana
+  name: demo-grafana
   namespace: prod-grafana
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: dhpup-demo-grafana
+  name: demo-grafana
 subjects:
 - kind: ServiceAccount
-  name: dhpup-demo-grafana
-  namespace: prod-grafana
+  name: demo-grafana
+  namespace: grafana
 ---
 apiVersion: v1
 data:
@@ -4060,7 +4060,7 @@ data:
       }
 kind: ConfigMap
 metadata:
-  name: dhpup-argocd-dashboards-cm-h79cdccct7
+  name: argocd-dashboards-cm-h79cdccct7
   namespace: prod-grafana
 ---
 apiVersion: v1
@@ -4106,7 +4106,7 @@ metadata:
     app.kubernetes.io/name: grafana
     app.kubernetes.io/version: 8.4.6
     helm.sh/chart: grafana-6.26.1
-  name: dhpup-demo-grafana
+  name: demo-grafana
   namespace: prod-grafana
 ---
 apiVersion: v1
@@ -4126,7 +4126,7 @@ metadata:
     app.kubernetes.io/name: grafana
     app.kubernetes.io/version: 8.4.6
     helm.sh/chart: grafana-6.26.1
-  name: dhpup-demo-grafana-test
+  name: demo-grafana-test
   namespace: prod-grafana
 ---
 apiVersion: v1
@@ -4135,7 +4135,7 @@ data:
   NAMESPACE: prod-grafana
 kind: ConfigMap
 metadata:
-  name: dhpup-env-cm-ggfdk6fb9c
+  name: env-cm-ggfdk6fb9c
   namespace: prod-grafana
 ---
 apiVersion: v1
@@ -4147,7 +4147,7 @@ metadata:
     app.kubernetes.io/name: grafana
     app.kubernetes.io/version: 8.4.6
     helm.sh/chart: grafana-6.26.1
-  name: dhpup-demo-grafana
+  name: demo-grafana
   namespace: prod-grafana
 spec:
   ports:
@@ -4169,7 +4169,7 @@ metadata:
     app.kubernetes.io/name: grafana
     app.kubernetes.io/version: 8.4.6
     helm.sh/chart: grafana-6.26.1
-  name: dhpup-demo-grafana
+  name: demo-grafana
   namespace: prod-grafana
 spec:
   replicas: 1
@@ -4213,7 +4213,7 @@ spec:
           value: /etc/grafana/provisioning
         envFrom:
         - configMapRef:
-            name: dhpup-env-cm-ggfdk6fb9c
+            name: env-cm-ggfdk6fb9c
             optional: false
         image: grafana/grafana:8.4.6
         imagePullPolicy: IfNotPresent
@@ -4260,13 +4260,13 @@ spec:
         fsGroup: 472
         runAsGroup: 472
         runAsUser: 472
-      serviceAccountName: dhpup-demo-grafana
+      serviceAccountName: demo-grafana
       volumes:
       - configMap:
-          name: dhpup-demo-grafana
+          name: demo-grafana
         name: config
       - configMap:
-          name: dhpup-argocd-dashboards-cm-h79cdccct7
+          name: argocd-dashboards-cm-h79cdccct7
         name: dashboards-argocd
       - emptyDir: {}
         name: storage
@@ -4274,7 +4274,7 @@ spec:
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: dhpup-admin-creds
+  name: admin-creds
   namespace: prod-grafana
 spec:
   data:
@@ -4303,8 +4303,7 @@ metadata:
     app.kubernetes.io/version: 8.4.6
     helm.sh/chart: grafana-6.26.1
     release: demo
-  name: dhpup-demo-grafana
-  namespace: dhpup
+  name: demo-grafana
 spec:
   endpoints:
   - honorLabels: true
@@ -4331,7 +4330,7 @@ metadata:
     app.kubernetes.io/name: grafana
     app.kubernetes.io/version: 8.4.6
     helm.sh/chart: grafana-6.26.1
-  name: dhpup-demo-grafana
+  name: demo-grafana
   namespace: prod-grafana
 spec:
   ingressClassName: traefik
@@ -4341,7 +4340,7 @@ spec:
       paths:
       - backend:
           service:
-            name: dhpup-demo-grafana
+            name: demo-grafana
             port:
               number: 80
         path: /
@@ -4358,7 +4357,7 @@ metadata:
     app.kubernetes.io/name: grafana
     app.kubernetes.io/version: 8.4.6
     helm.sh/chart: grafana-6.26.1
-  name: dhpup-demo-grafana-test
+  name: demo-grafana-test
   namespace: prod-grafana
 spec:
   containers:
@@ -4374,8 +4373,8 @@ spec:
       name: tests
       readOnly: true
   restartPolicy: Never
-  serviceAccountName: dhpup-demo-grafana-test
+  serviceAccountName: demo-grafana-test
   volumes:
   - configMap:
-      name: dhpup-demo-grafana-test
+      name: demo-grafana-test
     name: tests

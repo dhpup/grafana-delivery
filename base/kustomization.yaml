@@ -10,9 +10,11 @@ helmCharts:
   namespace: grafana
 
 resources:
+- namespace.yaml
 - admin-creds.yaml
 namePrefix: dhpup-
 namespace: dhpup
 
 generators:
 - configmap-dashboards.yaml
+- configmap-env.yaml

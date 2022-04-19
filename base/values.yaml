@@ -26,6 +26,9 @@ admin:
   userKey: user
   passwordKey: password
 
+envFromConfigMaps:
+- name: env-cm
+
 datasources:
  datasources.yaml:
    apiVersion: 1
